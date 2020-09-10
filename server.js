@@ -42,6 +42,11 @@ app.use(flash())
 app.use(express.static('public'))
 app.use(express.json())
 
+//global middlewares
+app.use((req,res,next)=>{
+    res.locals.session=req.session
+    next()
+})
 // always keep this expressLayout part above routes
 app.use(expressLayout)
 app.set('views',path.join(__dirname,'/resources/views'))
